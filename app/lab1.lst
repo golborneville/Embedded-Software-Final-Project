@@ -1,0 +1,1123 @@
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 1
+
+
+   1               		.file	"lab1.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.text
+   9               	.global	__vector_5
+  10               		.type	__vector_5, @function
+  11               	__vector_5:
+  12 0000 1F92      		push __zero_reg__
+  13 0002 0F92      		push r0
+  14 0004 0FB6      		in r0,__SREG__
+  15 0006 0F92      		push r0
+  16 0008 1124      		clr __zero_reg__
+  17 000a 8F93      		push r24
+  18 000c 9F93      		push r25
+  19               	/* prologue: Signal */
+  20               	/* frame size = 0 */
+  21 000e 8091 0000 		lds r24,count
+  22 0012 9091 0000 		lds r25,(count)+1
+  23 0016 0196      		adiw r24,1
+  24 0018 9093 0000 		sts (count)+1,r25
+  25 001c 8093 0000 		sts count,r24
+  26 0020 8091 0000 		lds r24,count
+  27 0024 9091 0000 		lds r25,(count)+1
+  28 0028 1816      		cp __zero_reg__,r24
+  29 002a 1906      		cpc __zero_reg__,r25
+  30 002c 04F4      		brge .L3
+  31 002e 81E0      		ldi r24,lo8(1)
+  32 0030 90E0      		ldi r25,hi8(1)
+  33 0032 9093 0000 		sts (ONOFFstate)+1,r25
+  34 0036 8093 0000 		sts ONOFFstate,r24
+  35               	.L3:
+  36               	/* epilogue start */
+  37 003a 9F91      		pop r25
+  38 003c 8F91      		pop r24
+  39 003e 0F90      		pop r0
+  40 0040 0FBE      		out __SREG__,r0
+  41 0042 0F90      		pop r0
+  42 0044 1F90      		pop __zero_reg__
+  43 0046 1895      		reti
+  44               		.size	__vector_5, .-__vector_5
+  45               	.global	__vector_6
+  46               		.type	__vector_6, @function
+  47               	__vector_6:
+  48 0048 1F92      		push __zero_reg__
+  49 004a 0F92      		push r0
+  50 004c 0FB6      		in r0,__SREG__
+  51 004e 0F92      		push r0
+  52 0050 1124      		clr __zero_reg__
+  53 0052 8F93      		push r24
+  54 0054 9F93      		push r25
+  55               	/* prologue: Signal */
+  56               	/* frame size = 0 */
+  57 0056 8091 0000 		lds r24,stand_cnt
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 2
+
+
+  58 005a 9091 0000 		lds r25,(stand_cnt)+1
+  59 005e 0196      		adiw r24,1
+  60 0060 9093 0000 		sts (stand_cnt)+1,r25
+  61 0064 8093 0000 		sts stand_cnt,r24
+  62               	/* epilogue start */
+  63 0068 9F91      		pop r25
+  64 006a 8F91      		pop r24
+  65 006c 0F90      		pop r0
+  66 006e 0FBE      		out __SREG__,r0
+  67 0070 0F90      		pop r0
+  68 0072 1F90      		pop __zero_reg__
+  69 0074 1895      		reti
+  70               		.size	__vector_6, .-__vector_6
+  71               	.global	setup
+  72               		.type	setup, @function
+  73               	setup:
+  74               	/* prologue: function */
+  75               	/* frame size = 0 */
+  76 0076 8FEF      		ldi r24,lo8(-1)
+  77 0078 8ABB      		out 58-32,r24
+  78 007a 84BB      		out 52-32,r24
+  79 007c 8FE0      		ldi r24,lo8(15)
+  80 007e 8093 6400 		sts 100,r24
+  81 0082 80E1      		ldi r24,lo8(16)
+  82 0084 87BB      		out 55-32,r24
+  83 0086 83E0      		ldi r24,lo8(3)
+  84 0088 85BD      		out 69-32,r24
+  85 008a 87B7      		in r24,87-32
+  86 008c 8064      		ori r24,lo8(64)
+  87 008e 87BF      		out 87-32,r24
+  88 0090 8FEC      		ldi r24,lo8(-49)
+  89 0092 82B9      		out 34-32,r24
+  90 0094 80E3      		ldi r24,lo8(48)
+  91 0096 89BF      		out 89-32,r24
+  92 0098 8AE0      		ldi r24,lo8(10)
+  93 009a 8ABF      		out 90-32,r24
+  94 009c 8FB7      		in r24,__SREG__
+  95 009e 8068      		ori r24,lo8(-128)
+  96 00a0 8FBF      		out __SREG__,r24
+  97               	/* epilogue start */
+  98 00a2 0895      		ret
+  99               		.size	setup, .-setup
+ 100               	.global	__vector_10
+ 101               		.type	__vector_10, @function
+ 102               	__vector_10:
+ 103 00a4 1F92      		push __zero_reg__
+ 104 00a6 0F92      		push r0
+ 105 00a8 0FB6      		in r0,__SREG__
+ 106 00aa 0F92      		push r0
+ 107 00ac 1124      		clr __zero_reg__
+ 108 00ae 2F93      		push r18
+ 109 00b0 3F93      		push r19
+ 110 00b2 8F93      		push r24
+ 111 00b4 9F93      		push r25
+ 112               	/* prologue: Signal */
+ 113               	/* frame size = 0 */
+ 114 00b6 2091 0000 		lds r18,ONOFFstate
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 3
+
+
+ 115 00ba 3091 0000 		lds r19,(ONOFFstate)+1
+ 116 00be 2130      		cpi r18,1
+ 117 00c0 3105      		cpc r19,__zero_reg__
+ 118 00c2 01F0      		breq .L14
+ 119               	.L13:
+ 120               	/* epilogue start */
+ 121 00c4 9F91      		pop r25
+ 122 00c6 8F91      		pop r24
+ 123 00c8 3F91      		pop r19
+ 124 00ca 2F91      		pop r18
+ 125 00cc 0F90      		pop r0
+ 126 00ce 0FBE      		out __SREG__,r0
+ 127 00d0 0F90      		pop r0
+ 128 00d2 1F90      		pop __zero_reg__
+ 129 00d4 1895      		reti
+ 130               	.L14:
+ 131 00d6 8091 0000 		lds r24,buz_state
+ 132 00da 9091 0000 		lds r25,(buz_state)+1
+ 133 00de 892B      		or r24,r25
+ 134 00e0 01F0      		breq .L15
+ 135 00e2 8091 0000 		lds r24,buz_state
+ 136 00e6 9091 0000 		lds r25,(buz_state)+1
+ 137 00ea 0197      		sbiw r24,1
+ 138 00ec 01F0      		breq .L16
+ 139               	.L12:
+ 140 00ee 8091 0000 		lds r24,melody
+ 141 00f2 9091 0000 		lds r25,(melody)+1
+ 142 00f6 84BD      		out 68-32,r24
+ 143 00f8 00C0      		rjmp .L13
+ 144               	.L15:
+ 145 00fa C49A      		sbi 56-32,4
+ 146 00fc 3093 0000 		sts (buz_state)+1,r19
+ 147 0100 2093 0000 		sts buz_state,r18
+ 148 0104 00C0      		rjmp .L12
+ 149               	.L16:
+ 150 0106 C498      		cbi 56-32,4
+ 151 0108 1092 0000 		sts (buz_state)+1,__zero_reg__
+ 152 010c 1092 0000 		sts buz_state,__zero_reg__
+ 153 0110 00C0      		rjmp .L12
+ 154               		.size	__vector_10, .-__vector_10
+ 155               	.global	main
+ 156               		.type	main, @function
+ 157               	main:
+ 158 0112 0F93      		push r16
+ 159 0114 1F93      		push r17
+ 160 0116 DF93      		push r29
+ 161 0118 CF93      		push r28
+ 162 011a 00D0      		rcall .
+ 163 011c CDB7      		in r28,__SP_L__
+ 164 011e DEB7      		in r29,__SP_H__
+ 165               	/* prologue: function */
+ 166               	/* frame size = 2 */
+ 167 0120 0E94 0000 		call OSInit
+ 168               	/* #APP */
+ 169               	 ;  292 "lab1.c" 1
+ 170 0124 F894      		cli
+ 171               	 ;  0 "" 2
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 4
+
+
+ 172               	/* #NOAPP */
+ 173 0126 87E0      		ldi r24,lo8(7)
+ 174 0128 83BF      		out 83-32,r24
+ 175 012a 81E0      		ldi r24,lo8(1)
+ 176 012c 87BF      		out 87-32,r24
+ 177 012e 84E6      		ldi r24,lo8(100)
+ 178 0130 82BF      		out 82-32,r24
+ 179               	/* #APP */
+ 180               	 ;  296 "lab1.c" 1
+ 181 0132 7894      		sei
+ 182               	 ;  0 "" 2
+ 183               	/* #NOAPP */
+ 184 0134 0E94 0000 		call setup
+ 185 0138 00E0      		ldi r16,lo8(random_array)
+ 186 013a 10E0      		ldi r17,hi8(random_array)
+ 187               	.L18:
+ 188 013c 0E94 0000 		call rand
+ 189 0140 64E6      		ldi r22,lo8(100)
+ 190 0142 70E0      		ldi r23,hi8(100)
+ 191 0144 0E94 0000 		call __divmodhi4
+ 192 0148 F801      		movw r30,r16
+ 193 014a 8193      		st Z+,r24
+ 194 014c 9193      		st Z+,r25
+ 195 014e 8F01      		movw r16,r30
+ 196 0150 F0E0      		ldi r31,hi8(random_array+16)
+ 197 0152 0030      		cpi r16,lo8(random_array+16)
+ 198 0154 1F07      		cpc r17,r31
+ 199 0156 01F4      		brne .L18
+ 200 0158 81E0      		ldi r24,lo8(1)
+ 201 015a 90E0      		ldi r25,hi8(1)
+ 202 015c 0E94 0000 		call OSSemCreate
+ 203 0160 9093 0000 		sts (Sem)+1,r25
+ 204 0164 8093 0000 		sts Sem,r24
+ 205 0168 80E0      		ldi r24,lo8(0)
+ 206 016a 90E0      		ldi r25,hi8(0)
+ 207 016c 0E94 0000 		call OSMboxCreate
+ 208 0170 9093 0000 		sts (Mbox)+1,r25
+ 209 0174 8093 0000 		sts Mbox,r24
+ 210 0178 80E0      		ldi r24,lo8(0)
+ 211 017a 90E0      		ldi r25,hi8(0)
+ 212 017c 0E94 0000 		call OSMboxCreate
+ 213 0180 9093 0000 		sts (NOTUSE)+1,r25
+ 214 0184 8093 0000 		sts NOTUSE,r24
+ 215 0188 80E0      		ldi r24,lo8(MQ_number)
+ 216 018a 90E0      		ldi r25,hi8(MQ_number)
+ 217 018c 61E0      		ldi r22,lo8(1)
+ 218 018e 70E0      		ldi r23,hi8(1)
+ 219 0190 0E94 0000 		call OSQCreate
+ 220 0194 9093 0000 		sts (MQNumber)+1,r25
+ 221 0198 8093 0000 		sts MQNumber,r24
+ 222 019c 80E0      		ldi r24,lo8(MQ_state)
+ 223 019e 90E0      		ldi r25,hi8(MQ_state)
+ 224 01a0 66E0      		ldi r22,lo8(6)
+ 225 01a2 70E0      		ldi r23,hi8(6)
+ 226 01a4 0E94 0000 		call OSQCreate
+ 227 01a8 9093 0000 		sts (MQState)+1,r25
+ 228 01ac 8093 0000 		sts MQState,r24
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 5
+
+
+ 229 01b0 80E0      		ldi r24,lo8(0)
+ 230 01b2 BE01      		movw r22,r28
+ 231 01b4 6F5F      		subi r22,lo8(-(1))
+ 232 01b6 7F4F      		sbci r23,hi8(-(1))
+ 233 01b8 0E94 0000 		call OSFlagCreate
+ 234 01bc 9093 0000 		sts (flag_grp)+1,r25
+ 235 01c0 8093 0000 		sts flag_grp,r24
+ 236 01c4 80E0      		ldi r24,lo8(gs(RandomTask))
+ 237 01c6 90E0      		ldi r25,hi8(gs(RandomTask))
+ 238 01c8 60E0      		ldi r22,lo8(0)
+ 239 01ca 70E0      		ldi r23,hi8(0)
+ 240 01cc 40E0      		ldi r20,lo8(TaskStk+127)
+ 241 01ce 50E0      		ldi r21,hi8(TaskStk+127)
+ 242 01d0 20E0      		ldi r18,lo8(0)
+ 243 01d2 0E94 0000 		call OSTaskCreate
+ 244 01d6 80E0      		ldi r24,lo8(gs(CountTask))
+ 245 01d8 90E0      		ldi r25,hi8(gs(CountTask))
+ 246 01da 60E0      		ldi r22,lo8(0)
+ 247 01dc 70E0      		ldi r23,hi8(0)
+ 248 01de 40E0      		ldi r20,lo8(TaskStk+255)
+ 249 01e0 50E0      		ldi r21,hi8(TaskStk+255)
+ 250 01e2 21E0      		ldi r18,lo8(1)
+ 251 01e4 0E94 0000 		call OSTaskCreate
+ 252 01e8 80E0      		ldi r24,lo8(gs(ledfunc))
+ 253 01ea 90E0      		ldi r25,hi8(gs(ledfunc))
+ 254 01ec 60E0      		ldi r22,lo8(0)
+ 255 01ee 70E0      		ldi r23,hi8(0)
+ 256 01f0 40E0      		ldi r20,lo8(TaskStk+383)
+ 257 01f2 50E0      		ldi r21,hi8(TaskStk+383)
+ 258 01f4 22E0      		ldi r18,lo8(2)
+ 259 01f6 0E94 0000 		call OSTaskCreate
+ 260 01fa 80E0      		ldi r24,lo8(gs(fndfunc))
+ 261 01fc 90E0      		ldi r25,hi8(gs(fndfunc))
+ 262 01fe 60E0      		ldi r22,lo8(0)
+ 263 0200 70E0      		ldi r23,hi8(0)
+ 264 0202 40E0      		ldi r20,lo8(TaskStk+511)
+ 265 0204 50E0      		ldi r21,hi8(TaskStk+511)
+ 266 0206 23E0      		ldi r18,lo8(3)
+ 267 0208 0E94 0000 		call OSTaskCreate
+ 268 020c 80E0      		ldi r24,lo8(gs(buzzerfunc))
+ 269 020e 90E0      		ldi r25,hi8(gs(buzzerfunc))
+ 270 0210 60E0      		ldi r22,lo8(0)
+ 271 0212 70E0      		ldi r23,hi8(0)
+ 272 0214 40E0      		ldi r20,lo8(TaskStk+639)
+ 273 0216 50E0      		ldi r21,hi8(TaskStk+639)
+ 274 0218 24E0      		ldi r18,lo8(4)
+ 275 021a 0E94 0000 		call OSTaskCreate
+ 276 021e 0E94 0000 		call OSStart
+ 277 0222 80E0      		ldi r24,lo8(0)
+ 278 0224 90E0      		ldi r25,hi8(0)
+ 279               	/* epilogue start */
+ 280 0226 0F90      		pop __tmp_reg__
+ 281 0228 0F90      		pop __tmp_reg__
+ 282 022a CF91      		pop r28
+ 283 022c DF91      		pop r29
+ 284 022e 1F91      		pop r17
+ 285 0230 0F91      		pop r16
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 6
+
+
+ 286 0232 0895      		ret
+ 287               		.size	main, .-main
+ 288               	.global	buzzerfunc
+ 289               		.type	buzzerfunc, @function
+ 290               	buzzerfunc:
+ 291 0234 6F92      		push r6
+ 292 0236 7F92      		push r7
+ 293 0238 8F92      		push r8
+ 294 023a 9F92      		push r9
+ 295 023c AF92      		push r10
+ 296 023e BF92      		push r11
+ 297 0240 CF92      		push r12
+ 298 0242 DF92      		push r13
+ 299 0244 EF92      		push r14
+ 300 0246 FF92      		push r15
+ 301 0248 0F93      		push r16
+ 302 024a 1F93      		push r17
+ 303 024c DF93      		push r29
+ 304 024e CF93      		push r28
+ 305 0250 00D0      		rcall .
+ 306 0252 CDB7      		in r28,__SP_L__
+ 307 0254 DEB7      		in r29,__SP_H__
+ 308               	/* prologue: function */
+ 309               	/* frame size = 2 */
+ 310 0256 6E01      		movw r12,r28
+ 311 0258 0894      		sec
+ 312 025a C11C      		adc r12,__zero_reg__
+ 313 025c D11C      		adc r13,__zero_reg__
+ 314 025e 8091 0000 		lds r24,MQState
+ 315 0262 9091 0000 		lds r25,(MQState)+1
+ 316 0266 60E0      		ldi r22,lo8(0)
+ 317 0268 70E0      		ldi r23,hi8(0)
+ 318 026a A601      		movw r20,r12
+ 319 026c 0E94 0000 		call OSQPend
+ 320 0270 FC01      		movw r30,r24
+ 321 0272 A080      		ld r10,Z
+ 322 0274 B180      		ldd r11,Z+1
+ 323 0276 8824      		clr r8
+ 324 0278 9924      		clr r9
+ 325 027a 21E0      		ldi r18,lo8(1)
+ 326 027c E22E      		mov r14,r18
+ 327 027e F12C      		mov r15,__zero_reg__
+ 328 0280 95E7      		ldi r25,lo8(117)
+ 329 0282 692E      		mov r6,r25
+ 330 0284 712C      		mov r7,__zero_reg__
+ 331 0286 00C0      		rjmp .L25
+ 332               	.L22:
+ 333 0288 A114      		cp r10,__zero_reg__
+ 334 028a B104      		cpc r11,__zero_reg__
+ 335 028c 01F4      		brne .L23
+ 336 028e 8114      		cp r8,__zero_reg__
+ 337 0290 9104      		cpc r9,__zero_reg__
+ 338 0292 01F4      		brne .L24
+ 339 0294 7092 0000 		sts (melody)+1,r7
+ 340 0298 6092 0000 		sts melody,r6
+ 341 029c 81E0      		ldi r24,lo8(1)
+ 342 029e 882E      		mov r8,r24
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 7
+
+
+ 343 02a0 912C      		mov r9,__zero_reg__
+ 344               	.L24:
+ 345 02a2 8091 0000 		lds r24,fndcnt
+ 346 02a6 9091 0000 		lds r25,(fndcnt)+1
+ 347 02aa 68EC      		ldi r22,lo8(200)
+ 348 02ac 70E0      		ldi r23,hi8(200)
+ 349 02ae 0E94 0000 		call __divmodhi4
+ 350 02b2 892B      		or r24,r25
+ 351 02b4 01F4      		brne .L23
+ 352 02b6 F701      		movw r30,r14
+ 353 02b8 E050      		subi r30,lo8(-(mel2))
+ 354 02ba F040      		sbci r31,hi8(-(mel2))
+ 355               	.L27:
+ 356 02bc 8081      		ld r24,Z
+ 357 02be 90E0      		ldi r25,lo8(0)
+ 358 02c0 9093 0000 		sts (melody)+1,r25
+ 359 02c4 8093 0000 		sts melody,r24
+ 360 02c8 C701      		movw r24,r14
+ 361 02ca 0196      		adiw r24,1
+ 362 02cc 63E0      		ldi r22,lo8(3)
+ 363 02ce 70E0      		ldi r23,hi8(3)
+ 364 02d0 0E94 0000 		call __divmodhi4
+ 365 02d4 7C01      		movw r14,r24
+ 366               	.L23:
+ 367 02d6 8091 0000 		lds r24,flag_grp
+ 368 02da 9091 0000 		lds r25,(flag_grp)+1
+ 369 02de 64E0      		ldi r22,lo8(4)
+ 370 02e0 41E0      		ldi r20,lo8(1)
+ 371 02e2 9601      		movw r18,r12
+ 372 02e4 0E94 0000 		call OSFlagPost
+ 373               	.L25:
+ 374 02e8 8091 0000 		lds r24,flag_grp
+ 375 02ec 9091 0000 		lds r25,(flag_grp)+1
+ 376 02f0 62E0      		ldi r22,lo8(2)
+ 377 02f2 42E8      		ldi r20,lo8(-126)
+ 378 02f4 20E0      		ldi r18,lo8(0)
+ 379 02f6 30E0      		ldi r19,hi8(0)
+ 380 02f8 8601      		movw r16,r12
+ 381 02fa 0E94 0000 		call OSFlagPend
+ 382 02fe 81E0      		ldi r24,lo8(1)
+ 383 0300 A816      		cp r10,r24
+ 384 0302 B104      		cpc r11,__zero_reg__
+ 385 0304 01F4      		brne .L22
+ 386 0306 8091 0000 		lds r24,fndcnt
+ 387 030a 9091 0000 		lds r25,(fndcnt)+1
+ 388 030e 68EC      		ldi r22,lo8(200)
+ 389 0310 70E0      		ldi r23,hi8(200)
+ 390 0312 0E94 0000 		call __divmodhi4
+ 391 0316 892B      		or r24,r25
+ 392 0318 01F4      		brne .L23
+ 393 031a F701      		movw r30,r14
+ 394 031c E050      		subi r30,lo8(-(mel))
+ 395 031e F040      		sbci r31,hi8(-(mel))
+ 396 0320 00C0      		rjmp .L27
+ 397               		.size	buzzerfunc, .-buzzerfunc
+ 398               	.global	fndfunc
+ 399               		.type	fndfunc, @function
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 8
+
+
+ 400               	fndfunc:
+ 401 0322 4F92      		push r4
+ 402 0324 5F92      		push r5
+ 403 0326 6F92      		push r6
+ 404 0328 7F92      		push r7
+ 405 032a 8F92      		push r8
+ 406 032c 9F92      		push r9
+ 407 032e AF92      		push r10
+ 408 0330 BF92      		push r11
+ 409 0332 CF92      		push r12
+ 410 0334 DF92      		push r13
+ 411 0336 EF92      		push r14
+ 412 0338 FF92      		push r15
+ 413 033a 0F93      		push r16
+ 414 033c 1F93      		push r17
+ 415 033e DF93      		push r29
+ 416 0340 CF93      		push r28
+ 417 0342 CDB7      		in r28,__SP_L__
+ 418 0344 DEB7      		in r29,__SP_H__
+ 419 0346 2A97      		sbiw r28,10
+ 420 0348 0FB6      		in __tmp_reg__,__SREG__
+ 421 034a F894      		cli
+ 422 034c DEBF      		out __SP_H__,r29
+ 423 034e 0FBE      		out __SREG__,__tmp_reg__
+ 424 0350 CDBF      		out __SP_L__,r28
+ 425               	/* prologue: function */
+ 426               	/* frame size = 10 */
+ 427 0352 5E01      		movw r10,r28
+ 428 0354 0894      		sec
+ 429 0356 A11C      		adc r10,__zero_reg__
+ 430 0358 B11C      		adc r11,__zero_reg__
+ 431 035a 8091 0000 		lds r24,MQState
+ 432 035e 9091 0000 		lds r25,(MQState)+1
+ 433 0362 60E0      		ldi r22,lo8(0)
+ 434 0364 70E0      		ldi r23,hi8(0)
+ 435 0366 A501      		movw r20,r10
+ 436 0368 0E94 0000 		call OSQPend
+ 437 036c FC01      		movw r30,r24
+ 438 036e C080      		ld r12,Z
+ 439 0370 D180      		ldd r13,Z+1
+ 440 0372 81E0      		ldi r24,lo8(1)
+ 441 0374 C816      		cp r12,r24
+ 442 0376 D104      		cpc r13,__zero_reg__
+ 443 0378 01F4      		brne .+2
+ 444 037a 00C0      		rjmp .L36
+ 445               	.L29:
+ 446 037c CF01      		movw r24,r30
+ 447 037e 6AE0      		ldi r22,lo8(10)
+ 448 0380 70E0      		ldi r23,hi8(10)
+ 449 0382 0E94 0000 		call __divmodhi4
+ 450 0386 2B01      		movw r4,r22
+ 451 0388 CF01      		movw r24,r30
+ 452 038a 6AE0      		ldi r22,lo8(10)
+ 453 038c 70E0      		ldi r23,hi8(10)
+ 454 038e 0E94 0000 		call __divmodhi4
+ 455 0392 4C01      		movw r8,r24
+ 456 0394 40E0      		ldi r20,lo8(digit)
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 9
+
+
+ 457 0396 642E      		mov r6,r20
+ 458 0398 40E0      		ldi r20,hi8(digit)
+ 459 039a 742E      		mov r7,r20
+ 460 039c 680E      		add r6,r24
+ 461 039e 791E      		adc r7,r25
+ 462 03a0 30E1      		ldi r19,lo8(10000)
+ 463 03a2 E32E      		mov r14,r19
+ 464 03a4 37E2      		ldi r19,hi8(10000)
+ 465 03a6 F32E      		mov r15,r19
+ 466               	.L33:
+ 467 03a8 8091 0000 		lds r24,flag_grp
+ 468 03ac 9091 0000 		lds r25,(flag_grp)+1
+ 469 03b0 61E0      		ldi r22,lo8(1)
+ 470 03b2 42E8      		ldi r20,lo8(-126)
+ 471 03b4 20E0      		ldi r18,lo8(0)
+ 472 03b6 30E0      		ldi r19,hi8(0)
+ 473 03b8 8501      		movw r16,r10
+ 474 03ba 0E94 0000 		call OSFlagPend
+ 475 03be E1E0      		ldi r30,lo8(1)
+ 476 03c0 CE16      		cp r12,r30
+ 477 03c2 D104      		cpc r13,__zero_reg__
+ 478 03c4 01F0      		breq .L37
+ 479 03c6 C114      		cp r12,__zero_reg__
+ 480 03c8 D104      		cpc r13,__zero_reg__
+ 481 03ca 01F4      		brne .L31
+ 482 03cc A0E0      		ldi r26,lo8(fail)
+ 483 03ce B0E0      		ldi r27,hi8(fail)
+ 484 03d0 E0E0      		ldi r30,lo8(fnd_sel+3)
+ 485 03d2 F0E0      		ldi r31,hi8(fnd_sel+3)
+ 486               	.L32:
+ 487 03d4 8D91      		ld r24,X+
+ 488 03d6 85BB      		out 53-32,r24
+ 489 03d8 8081      		ld r24,Z
+ 490 03da 8093 6500 		sts 101,r24
+ 491 03de C701      		movw r24,r14
+ 492               	/* #APP */
+ 493               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 494 03e0 0197      		1: sbiw r24,1
+ 495 03e2 01F4      		brne 1b
+ 496               	 ;  0 "" 2
+ 497               	/* #NOAPP */
+ 498 03e4 3197      		sbiw r30,1
+ 499 03e6 80E0      		ldi r24,hi8(fail+4)
+ 500 03e8 A030      		cpi r26,lo8(fail+4)
+ 501 03ea B807      		cpc r27,r24
+ 502 03ec 01F4      		brne .L32
+ 503 03ee 8091 0000 		lds r24,fndcnt
+ 504 03f2 9091 0000 		lds r25,(fndcnt)+1
+ 505 03f6 0196      		adiw r24,1
+ 506 03f8 9093 0000 		sts (fndcnt)+1,r25
+ 507 03fc 8093 0000 		sts fndcnt,r24
+ 508               	.L31:
+ 509 0400 8091 0000 		lds r24,flag_grp
+ 510 0404 9091 0000 		lds r25,(flag_grp)+1
+ 511 0408 62E0      		ldi r22,lo8(2)
+ 512 040a 41E0      		ldi r20,lo8(1)
+ 513 040c 9501      		movw r18,r10
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 10
+
+
+ 514 040e 0E94 0000 		call OSFlagPost
+ 515 0412 00C0      		rjmp .L33
+ 516               	.L37:
+ 517 0414 1A86      		std Y+10,__zero_reg__
+ 518 0416 1986      		std Y+9,__zero_reg__
+ 519 0418 1886      		std Y+8,__zero_reg__
+ 520 041a 1F82      		std Y+7,__zero_reg__
+ 521 041c 4D82      		std Y+5,r4
+ 522 041e 5E82      		std Y+6,r5
+ 523 0420 9C82      		std Y+4,r9
+ 524 0422 8B82      		std Y+3,r8
+ 525 0424 F301      		movw r30,r6
+ 526 0426 8081      		ld r24,Z
+ 527 0428 85BB      		out 53-32,r24
+ 528 042a 8091 0000 		lds r24,fnd_sel
+ 529 042e 8093 6500 		sts 101,r24
+ 530 0432 C701      		movw r24,r14
+ 531               	/* #APP */
+ 532               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 533 0434 0197      		1: sbiw r24,1
+ 534 0436 01F4      		brne 1b
+ 535               	 ;  0 "" 2
+ 536               	/* #NOAPP */
+ 537 0438 ED81      		ldd r30,Y+5
+ 538 043a FE81      		ldd r31,Y+6
+ 539 043c E050      		subi r30,lo8(-(digit))
+ 540 043e F040      		sbci r31,hi8(-(digit))
+ 541 0440 8081      		ld r24,Z
+ 542 0442 85BB      		out 53-32,r24
+ 543 0444 8091 0000 		lds r24,fnd_sel+1
+ 544 0448 8093 6500 		sts 101,r24
+ 545 044c C701      		movw r24,r14
+ 546               	/* #APP */
+ 547               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 548 044e 0197      		1: sbiw r24,1
+ 549 0450 01F4      		brne 1b
+ 550               	 ;  0 "" 2
+ 551               	/* #NOAPP */
+ 552 0452 EF81      		ldd r30,Y+7
+ 553 0454 F885      		ldd r31,Y+8
+ 554 0456 E050      		subi r30,lo8(-(digit))
+ 555 0458 F040      		sbci r31,hi8(-(digit))
+ 556 045a 8081      		ld r24,Z
+ 557 045c 85BB      		out 53-32,r24
+ 558 045e 8091 0000 		lds r24,fnd_sel+2
+ 559 0462 8093 6500 		sts 101,r24
+ 560 0466 C701      		movw r24,r14
+ 561               	/* #APP */
+ 562               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 563 0468 0197      		1: sbiw r24,1
+ 564 046a 01F4      		brne 1b
+ 565               	 ;  0 "" 2
+ 566               	/* #NOAPP */
+ 567 046c E985      		ldd r30,Y+9
+ 568 046e FA85      		ldd r31,Y+10
+ 569 0470 E050      		subi r30,lo8(-(digit))
+ 570 0472 F040      		sbci r31,hi8(-(digit))
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 11
+
+
+ 571 0474 8081      		ld r24,Z
+ 572 0476 85BB      		out 53-32,r24
+ 573 0478 8091 0000 		lds r24,fnd_sel+3
+ 574 047c 8093 6500 		sts 101,r24
+ 575 0480 C701      		movw r24,r14
+ 576               	/* #APP */
+ 577               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 578 0482 0197      		1: sbiw r24,1
+ 579 0484 01F4      		brne 1b
+ 580               	 ;  0 "" 2
+ 581               	/* #NOAPP */
+ 582 0486 8091 0000 		lds r24,fndcnt
+ 583 048a 9091 0000 		lds r25,(fndcnt)+1
+ 584 048e 0196      		adiw r24,1
+ 585 0490 9093 0000 		sts (fndcnt)+1,r25
+ 586 0494 8093 0000 		sts fndcnt,r24
+ 587 0498 00C0      		rjmp .L31
+ 588               	.L36:
+ 589 049a 8091 0000 		lds r24,MQNumber
+ 590 049e 9091 0000 		lds r25,(MQNumber)+1
+ 591 04a2 60E0      		ldi r22,lo8(0)
+ 592 04a4 70E0      		ldi r23,hi8(0)
+ 593 04a6 A501      		movw r20,r10
+ 594 04a8 0E94 0000 		call OSQPend
+ 595 04ac FC01      		movw r30,r24
+ 596 04ae 0190      		ld __tmp_reg__,Z+
+ 597 04b0 F081      		ld r31,Z
+ 598 04b2 E02D      		mov r30,__tmp_reg__
+ 599 04b4 00C0      		rjmp .L29
+ 600               		.size	fndfunc, .-fndfunc
+ 601               	.global	ledfunc
+ 602               		.type	ledfunc, @function
+ 603               	ledfunc:
+ 604 04b6 8F92      		push r8
+ 605 04b8 9F92      		push r9
+ 606 04ba AF92      		push r10
+ 607 04bc BF92      		push r11
+ 608 04be CF92      		push r12
+ 609 04c0 DF92      		push r13
+ 610 04c2 EF92      		push r14
+ 611 04c4 FF92      		push r15
+ 612 04c6 0F93      		push r16
+ 613 04c8 1F93      		push r17
+ 614 04ca DF93      		push r29
+ 615 04cc CF93      		push r28
+ 616 04ce 00D0      		rcall .
+ 617 04d0 CDB7      		in r28,__SP_L__
+ 618 04d2 DEB7      		in r29,__SP_H__
+ 619               	/* prologue: function */
+ 620               	/* frame size = 2 */
+ 621 04d4 7E01      		movw r14,r28
+ 622 04d6 0894      		sec
+ 623 04d8 E11C      		adc r14,__zero_reg__
+ 624 04da F11C      		adc r15,__zero_reg__
+ 625 04dc 8091 0000 		lds r24,MQState
+ 626 04e0 9091 0000 		lds r25,(MQState)+1
+ 627 04e4 60E0      		ldi r22,lo8(0)
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 12
+
+
+ 628 04e6 70E0      		ldi r23,hi8(0)
+ 629 04e8 A701      		movw r20,r14
+ 630 04ea 0E94 0000 		call OSQPend
+ 631 04ee FC01      		movw r30,r24
+ 632 04f0 C080      		ld r12,Z
+ 633 04f2 D180      		ldd r13,Z+1
+ 634 04f4 A0E8      		ldi r26,lo8(128)
+ 635 04f6 AA2E      		mov r10,r26
+ 636 04f8 B12C      		mov r11,__zero_reg__
+ 637 04fa F5E5      		ldi r31,lo8(85)
+ 638 04fc 8F2E      		mov r8,r31
+ 639 04fe 912C      		mov r9,__zero_reg__
+ 640 0500 00C0      		rjmp .L43
+ 641               	.L39:
+ 642 0502 8091 0000 		lds r24,flag_grp
+ 643 0506 9091 0000 		lds r25,(flag_grp)+1
+ 644 050a 61E0      		ldi r22,lo8(1)
+ 645 050c 41E0      		ldi r20,lo8(1)
+ 646 050e 9701      		movw r18,r14
+ 647 0510 0E94 0000 		call OSFlagPost
+ 648 0514 8091 0000 		lds r24,flag_grp
+ 649 0518 9091 0000 		lds r25,(flag_grp)+1
+ 650 051c 64E0      		ldi r22,lo8(4)
+ 651 051e 42E8      		ldi r20,lo8(-126)
+ 652 0520 20E0      		ldi r18,lo8(0)
+ 653 0522 30E0      		ldi r19,hi8(0)
+ 654 0524 8701      		movw r16,r14
+ 655 0526 0E94 0000 		call OSFlagPend
+ 656               	.L43:
+ 657 052a 8091 0000 		lds r24,ONOFFstate
+ 658 052e 9091 0000 		lds r25,(ONOFFstate)+1
+ 659 0532 0197      		sbiw r24,1
+ 660 0534 01F4      		brne .L39
+ 661 0536 81E0      		ldi r24,lo8(1)
+ 662 0538 C816      		cp r12,r24
+ 663 053a D104      		cpc r13,__zero_reg__
+ 664 053c 01F0      		breq .L45
+ 665 053e C114      		cp r12,__zero_reg__
+ 666 0540 D104      		cpc r13,__zero_reg__
+ 667 0542 01F4      		brne .L39
+ 668 0544 8091 0000 		lds r24,fndcnt
+ 669 0548 9091 0000 		lds r25,(fndcnt)+1
+ 670 054c 64E6      		ldi r22,lo8(100)
+ 671 054e 70E0      		ldi r23,hi8(100)
+ 672 0550 0E94 0000 		call __divmodhi4
+ 673 0554 892B      		or r24,r25
+ 674 0556 01F4      		brne .L39
+ 675 0558 8AEA      		ldi r24,lo8(170)
+ 676 055a 8816      		cp r8,r24
+ 677 055c 9104      		cpc r9,__zero_reg__
+ 678 055e 01F0      		breq .L41
+ 679 0560 6AEA      		ldi r22,lo8(170)
+ 680 0562 862E      		mov r8,r22
+ 681 0564 912C      		mov r9,__zero_reg__
+ 682 0566 8AEA      		ldi r24,lo8(-86)
+ 683 0568 8BBB      		out 59-32,r24
+ 684 056a 00C0      		rjmp .L39
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 13
+
+
+ 685               	.L45:
+ 686 056c 8091 0000 		lds r24,fndcnt
+ 687 0570 9091 0000 		lds r25,(fndcnt)+1
+ 688 0574 6AE0      		ldi r22,lo8(10)
+ 689 0576 70E0      		ldi r23,hi8(10)
+ 690 0578 0E94 0000 		call __divmodhi4
+ 691 057c 892B      		or r24,r25
+ 692 057e 01F0      		breq .+2
+ 693 0580 00C0      		rjmp .L39
+ 694 0582 ABBA      		out 59-32,r10
+ 695 0584 B594      		asr r11
+ 696 0586 A794      		ror r10
+ 697 0588 A114      		cp r10,__zero_reg__
+ 698 058a B104      		cpc r11,__zero_reg__
+ 699 058c 01F0      		breq .+2
+ 700 058e 00C0      		rjmp .L39
+ 701 0590 70E8      		ldi r23,lo8(128)
+ 702 0592 A72E      		mov r10,r23
+ 703 0594 B12C      		mov r11,__zero_reg__
+ 704 0596 00C0      		rjmp .L39
+ 705               	.L41:
+ 706 0598 55E5      		ldi r21,lo8(85)
+ 707 059a 852E      		mov r8,r21
+ 708 059c 912C      		mov r9,__zero_reg__
+ 709 059e 85E5      		ldi r24,lo8(85)
+ 710 05a0 8BBB      		out 59-32,r24
+ 711 05a2 00C0      		rjmp .L39
+ 712               		.size	ledfunc, .-ledfunc
+ 713               	.global	CountTask
+ 714               		.type	CountTask, @function
+ 715               	CountTask:
+ 716 05a4 6F92      		push r6
+ 717 05a6 7F92      		push r7
+ 718 05a8 8F92      		push r8
+ 719 05aa 9F92      		push r9
+ 720 05ac AF92      		push r10
+ 721 05ae BF92      		push r11
+ 722 05b0 CF92      		push r12
+ 723 05b2 DF92      		push r13
+ 724 05b4 FF92      		push r15
+ 725 05b6 0F93      		push r16
+ 726 05b8 1F93      		push r17
+ 727 05ba DF93      		push r29
+ 728 05bc CF93      		push r28
+ 729 05be 00D0      		rcall .
+ 730 05c0 00D0      		rcall .
+ 731 05c2 00D0      		rcall .
+ 732 05c4 CDB7      		in r28,__SP_L__
+ 733 05c6 DEB7      		in r29,__SP_H__
+ 734               	/* prologue: function */
+ 735               	/* frame size = 6 */
+ 736 05c8 1E82      		std Y+6,__zero_reg__
+ 737 05ca 1D82      		std Y+5,__zero_reg__
+ 738 05cc 5E01      		movw r10,r28
+ 739 05ce 0894      		sec
+ 740 05d0 A11C      		adc r10,__zero_reg__
+ 741 05d2 B11C      		adc r11,__zero_reg__
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 14
+
+
+ 742 05d4 93E0      		ldi r25,lo8(3)
+ 743 05d6 892E      		mov r8,r25
+ 744 05d8 912C      		mov r9,__zero_reg__
+ 745 05da 8C0E      		add r8,r28
+ 746 05dc 9D1E      		adc r9,r29
+ 747 05de 85E0      		ldi r24,lo8(5)
+ 748 05e0 C82E      		mov r12,r24
+ 749 05e2 D12C      		mov r13,__zero_reg__
+ 750 05e4 CC0E      		add r12,r28
+ 751 05e6 DD1E      		adc r13,r29
+ 752 05e8 FF24      		clr r15
+ 753 05ea F394      		inc r15
+ 754 05ec B1E0      		ldi r27,lo8(1)
+ 755 05ee 6B2E      		mov r6,r27
+ 756 05f0 712C      		mov r7,__zero_reg__
+ 757               	.L52:
+ 758 05f2 8091 0000 		lds r24,Mbox
+ 759 05f6 9091 0000 		lds r25,(Mbox)+1
+ 760 05fa 60E0      		ldi r22,lo8(0)
+ 761 05fc 70E0      		ldi r23,hi8(0)
+ 762 05fe A501      		movw r20,r10
+ 763 0600 0E94 0000 		call OSMboxPend
+ 764 0604 FC01      		movw r30,r24
+ 765 0606 0190      		ld __tmp_reg__,Z+
+ 766 0608 F081      		ld r31,Z
+ 767 060a E02D      		mov r30,__tmp_reg__
+ 768               	.L56:
+ 769 060c 8091 0000 		lds r24,ONOFFstate
+ 770 0610 9091 0000 		lds r25,(ONOFFstate)+1
+ 771 0614 892B      		or r24,r25
+ 772 0616 01F4      		brne .L57
+ 773 0618 FBBA      		out 59-32,r15
+ 774 061a 20E0      		ldi r18,lo8(0)
+ 775 061c 30E0      		ldi r19,hi8(0)
+ 776               	.L48:
+ 777 061e 8091 0000 		lds r24,ONOFFstate
+ 778 0622 9091 0000 		lds r25,(ONOFFstate)+1
+ 779 0626 8901      		movw r16,r18
+ 780 0628 0197      		sbiw r24,1
+ 781 062a 01F0      		breq .L56
+ 782 062c C901      		movw r24,r18
+ 783 062e 0196      		adiw r24,1
+ 784 0630 8436      		cpi r24,100
+ 785 0632 9105      		cpc r25,__zero_reg__
+ 786 0634 01F0      		breq .L56
+ 787 0636 9C01      		movw r18,r24
+ 788 0638 00C0      		rjmp .L48
+ 789               	.L57:
+ 790 063a E017      		cp r30,r16
+ 791 063c F107      		cpc r31,r17
+ 792 063e 04F4      		brge .L50
+ 793 0640 7E82      		std Y+6,r7
+ 794 0642 6D82      		std Y+5,r6
+ 795 0644 1C83      		std Y+4,r17
+ 796 0646 0B83      		std Y+3,r16
+ 797 0648 8091 0000 		lds r24,MQNumber
+ 798 064c 9091 0000 		lds r25,(MQNumber)+1
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 15
+
+
+ 799 0650 B401      		movw r22,r8
+ 800 0652 0E94 0000 		call OSQPost
+ 801               	.L51:
+ 802 0656 8091 0000 		lds r24,MQState
+ 803 065a 9091 0000 		lds r25,(MQState)+1
+ 804 065e B601      		movw r22,r12
+ 805 0660 0E94 0000 		call OSQPost
+ 806 0664 8091 0000 		lds r24,MQState
+ 807 0668 9091 0000 		lds r25,(MQState)+1
+ 808 066c B601      		movw r22,r12
+ 809 066e 0E94 0000 		call OSQPost
+ 810 0672 8091 0000 		lds r24,MQState
+ 811 0676 9091 0000 		lds r25,(MQState)+1
+ 812 067a B601      		movw r22,r12
+ 813 067c 0E94 0000 		call OSQPost
+ 814 0680 8091 0000 		lds r24,NOTUSE
+ 815 0684 9091 0000 		lds r25,(NOTUSE)+1
+ 816 0688 60E0      		ldi r22,lo8(0)
+ 817 068a 70E0      		ldi r23,hi8(0)
+ 818 068c A501      		movw r20,r10
+ 819 068e 0E94 0000 		call OSMboxPend
+ 820 0692 00C0      		rjmp .L52
+ 821               	.L50:
+ 822 0694 1E82      		std Y+6,__zero_reg__
+ 823 0696 1D82      		std Y+5,__zero_reg__
+ 824 0698 00C0      		rjmp .L51
+ 825               		.size	CountTask, .-CountTask
+ 826               	.global	RandomTask
+ 827               		.type	RandomTask, @function
+ 828               	RandomTask:
+ 829 069a CF92      		push r12
+ 830 069c DF92      		push r13
+ 831 069e EF92      		push r14
+ 832 06a0 FF92      		push r15
+ 833 06a2 0F93      		push r16
+ 834 06a4 1F93      		push r17
+ 835 06a6 DF93      		push r29
+ 836 06a8 CF93      		push r28
+ 837 06aa 00D0      		rcall .
+ 838 06ac 00D0      		rcall .
+ 839 06ae CDB7      		in r28,__SP_L__
+ 840 06b0 DEB7      		in r29,__SP_H__
+ 841               	/* prologue: function */
+ 842               	/* frame size = 4 */
+ 843 06b2 7E01      		movw r14,r28
+ 844 06b4 0894      		sec
+ 845 06b6 E11C      		adc r14,__zero_reg__
+ 846 06b8 F11C      		adc r15,__zero_reg__
+ 847 06ba 33E0      		ldi r19,lo8(3)
+ 848 06bc C32E      		mov r12,r19
+ 849 06be D12C      		mov r13,__zero_reg__
+ 850 06c0 CC0E      		add r12,r28
+ 851 06c2 DD1E      		adc r13,r29
+ 852               	.L63:
+ 853 06c4 8091 0000 		lds r24,Sem
+ 854 06c8 9091 0000 		lds r25,(Sem)+1
+ 855 06cc 60E0      		ldi r22,lo8(0)
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 16
+
+
+ 856 06ce 70E0      		ldi r23,hi8(0)
+ 857 06d0 A701      		movw r20,r14
+ 858 06d2 0E94 0000 		call OSSemPend
+ 859 06d6 00C0      		rjmp .L66
+ 860               	.L60:
+ 861 06d8 8901      		movw r16,r18
+ 862               	.L66:
+ 863 06da 8091 0000 		lds r24,stand_cnt
+ 864 06de 9091 0000 		lds r25,(stand_cnt)+1
+ 865 06e2 892B      		or r24,r25
+ 866 06e4 01F4      		brne .L68
+ 867               	.L62:
+ 868 06e6 20E0      		ldi r18,lo8(0)
+ 869 06e8 30E0      		ldi r19,hi8(0)
+ 870               	.L61:
+ 871 06ea 8091 0000 		lds r24,stand_cnt
+ 872 06ee 9091 0000 		lds r25,(stand_cnt)+1
+ 873 06f2 1816      		cp __zero_reg__,r24
+ 874 06f4 1906      		cpc __zero_reg__,r25
+ 875 06f6 04F0      		brlt .L60
+ 876 06f8 2F5F      		subi r18,lo8(-(1))
+ 877 06fa 3F4F      		sbci r19,hi8(-(1))
+ 878 06fc 2830      		cpi r18,8
+ 879 06fe 3105      		cpc r19,__zero_reg__
+ 880 0700 01F4      		brne .L61
+ 881 0702 8091 0000 		lds r24,stand_cnt
+ 882 0706 9091 0000 		lds r25,(stand_cnt)+1
+ 883 070a 892B      		or r24,r25
+ 884 070c 01F0      		breq .L62
+ 885               	.L68:
+ 886 070e F801      		movw r30,r16
+ 887 0710 EE0F      		lsl r30
+ 888 0712 FF1F      		rol r31
+ 889 0714 E050      		subi r30,lo8(-(random_array))
+ 890 0716 F040      		sbci r31,hi8(-(random_array))
+ 891 0718 8081      		ld r24,Z
+ 892 071a 9181      		ldd r25,Z+1
+ 893 071c 9C83      		std Y+4,r25
+ 894 071e 8B83      		std Y+3,r24
+ 895 0720 8091 0000 		lds r24,Sem
+ 896 0724 9091 0000 		lds r25,(Sem)+1
+ 897 0728 0E94 0000 		call OSSemPost
+ 898 072c 8091 0000 		lds r24,Mbox
+ 899 0730 9091 0000 		lds r25,(Mbox)+1
+ 900 0734 B601      		movw r22,r12
+ 901 0736 0E94 0000 		call OSMboxPost
+ 902 073a 8091 0000 		lds r24,NOTUSE
+ 903 073e 9091 0000 		lds r25,(NOTUSE)+1
+ 904 0742 60E0      		ldi r22,lo8(0)
+ 905 0744 70E0      		ldi r23,hi8(0)
+ 906 0746 A701      		movw r20,r14
+ 907 0748 0E94 0000 		call OSMboxPend
+ 908 074c 00C0      		rjmp .L63
+ 909               		.size	RandomTask, .-RandomTask
+ 910               	.global	fndcnt
+ 911               	.global	fndcnt
+ 912               		.section .bss
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 17
+
+
+ 913               		.type	fndcnt, @object
+ 914               		.size	fndcnt, 2
+ 915               	fndcnt:
+ 916 0000 0000      		.skip 2,0
+ 917               	.global	buz_state
+ 918               	.global	buz_state
+ 919               		.type	buz_state, @object
+ 920               		.size	buz_state, 2
+ 921               	buz_state:
+ 922 0002 0000      		.skip 2,0
+ 923               	.global	ONOFFstate
+ 924               	.global	ONOFFstate
+ 925               		.type	ONOFFstate, @object
+ 926               		.size	ONOFFstate, 2
+ 927               	ONOFFstate:
+ 928 0004 0000      		.skip 2,0
+ 929               	.global	melody
+ 930               		.data
+ 931               		.type	melody, @object
+ 932               		.size	melody, 2
+ 933               	melody:
+ 934 0000 1100      		.word	17
+ 935               	.global	digit
+ 936               		.type	digit, @object
+ 937               		.size	digit, 10
+ 938               	digit:
+ 939 0002 3F        		.byte	63
+ 940 0003 06        		.byte	6
+ 941 0004 5B        		.byte	91
+ 942 0005 4F        		.byte	79
+ 943 0006 66        		.byte	102
+ 944 0007 6D        		.byte	109
+ 945 0008 7D        		.byte	125
+ 946 0009 27        		.byte	39
+ 947 000a 7F        		.byte	127
+ 948 000b 6F        		.byte	111
+ 949               	.global	fnd_sel
+ 950               		.type	fnd_sel, @object
+ 951               		.size	fnd_sel, 4
+ 952               	fnd_sel:
+ 953 000c 01        		.byte	1
+ 954 000d 02        		.byte	2
+ 955 000e 04        		.byte	4
+ 956 000f 08        		.byte	8
+ 957               	.global	fail
+ 958               		.type	fail, @object
+ 959               		.size	fail, 4
+ 960               	fail:
+ 961 0010 71        		.byte	113
+ 962 0011 77        		.byte	119
+ 963 0012 06        		.byte	6
+ 964 0013 38        		.byte	56
+ 965               	.global	mel
+ 966               		.type	mel, @object
+ 967               		.size	mel, 3
+ 968               	mel:
+ 969 0014 11        		.byte	17
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 18
+
+
+ 970 0015 4D        		.byte	77
+ 971 0016 75        		.byte	117
+ 972               	.global	mel2
+ 973               		.type	mel2, @object
+ 974               		.size	mel2, 3
+ 975               	mel2:
+ 976 0017 75        		.byte	117
+ 977 0018 4D        		.byte	77
+ 978 0019 11        		.byte	17
+ 979               	.global	count
+ 980               	.global	count
+ 981               		.section .bss
+ 982               		.type	count, @object
+ 983               		.size	count, 2
+ 984               	count:
+ 985 0006 0000      		.skip 2,0
+ 986               	.global	stand_cnt
+ 987               	.global	stand_cnt
+ 988               		.type	stand_cnt, @object
+ 989               		.size	stand_cnt, 2
+ 990               	stand_cnt:
+ 991 0008 0000      		.skip 2,0
+ 992               		.comm random_array,16,1
+ 993               		.comm TaskStk,768,1
+ 994               		.comm Sem,2,1
+ 995               		.comm Mbox,2,1
+ 996               		.comm NOTUSE,2,1
+ 997               		.comm MQNumber,2,1
+ 998               		.comm MQState,2,1
+ 999               		.comm MQ_number,2,1
+ 1000               		.comm MQ_state,12,1
+ 1001               		.comm flag_grp,2,1
+ 1002               	.global __do_copy_data
+ 1003               	.global __do_clear_bss
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 lab1.c
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:2      *ABS*:0000003f __SREG__
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:3      *ABS*:0000003e __SP_H__
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:4      *ABS*:0000003d __SP_L__
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:5      *ABS*:00000034 __CCP__
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:11     .text:00000000 __vector_5
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:984    .bss:00000006 count
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:927    .bss:00000004 ONOFFstate
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:47     .text:00000048 __vector_6
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:990    .bss:00000008 stand_cnt
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:73     .text:00000076 setup
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:102    .text:000000a4 __vector_10
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:921    .bss:00000002 buz_state
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:933    .data:00000000 melody
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:157    .text:00000112 main
+                            *COM*:00000010 random_array
+                            *COM*:00000002 Sem
+                            *COM*:00000002 Mbox
+                            *COM*:00000002 NOTUSE
+                            *COM*:00000002 MQ_number
+                            *COM*:00000002 MQNumber
+                            *COM*:0000000c MQ_state
+                            *COM*:00000002 MQState
+                            *COM*:00000002 flag_grp
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:828    .text:0000069a RandomTask
+                            *COM*:00000300 TaskStk
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:715    .text:000005a4 CountTask
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:603    .text:000004b6 ledfunc
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:400    .text:00000322 fndfunc
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:290    .text:00000234 buzzerfunc
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:915    .bss:00000000 fndcnt
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:975    .data:00000017 mel2
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:968    .data:00000014 mel
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:938    .data:00000002 digit
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:960    .data:00000010 fail
+C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s:952    .data:0000000c fnd_sel
+
+UNDEFINED SYMBOLS
+OSInit
+rand
+__divmodhi4
+OSSemCreate
+OSMboxCreate
+OSQCreate
+OSFlagCreate
+OSTaskCreate
+OSStart
+OSQPend
+OSFlagPost
+OSFlagPend
+OSMboxPend
+OSQPost
+OSSemPend
+OSSemPost
+GAS LISTING C:\Users\adelv\AppData\Local\Temp/ccEE2b1Z.s 			page 20
+
+
+OSMboxPost
+__do_copy_data
+__do_clear_bss
